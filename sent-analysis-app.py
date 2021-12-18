@@ -48,13 +48,15 @@ engine = create_engine('sqlite:///./content/drive/MyDrive/Colab_Notebooks/Amaxon
 df = pd.read_sql_table('DisasterResponse', con=engine)
 
 # load model
-model = joblib.load("./content/drive/MyDrive/Colab_Notebooks/lstmModel.pkl")
+model = pickle.load(open("lstmModel.pkl", "rb")
 
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
-@app.route('/index')
-
+def home():
+    return render_template("index.html")              
+         
+    
 # web page that handles user query and displays model results
 @app.route('/go')
 def go():
